@@ -1,0 +1,420 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Content/swordswish.png" type="Texture" id=3]
+[ext_resource path="res://SwordSwish.gd" type="Script" id=4]
+[ext_resource path="res://Content/swordswishmask.png" type="Texture" id=5]
+[ext_resource path="res://sword.gd" type="Script" id=6]
+[ext_resource path="res://Content/sword.png" type="Texture" id=7]
+[ext_resource path="res://Content/handandgun.png" type="Texture" id=8]
+[ext_resource path="res://Gun.gd" type="Script" id=9]
+[ext_resource path="res://Content/charsheet/char_idle.png" type="Texture" id=10]
+[ext_resource path="res://Content/charsheet/char_idle1.png" type="Texture" id=11]
+[ext_resource path="res://Content/charsheet/char_run.png" type="Texture" id=12]
+[ext_resource path="res://Camera2D.gd" type="Script" id=13]
+[ext_resource path="res://Bullet.gd" type="Script" id=14]
+[ext_resource path="res://Content/bullet.png" type="Texture" id=15]
+[ext_resource path="res://Content/swordswishmask6.png" type="Texture" id=16]
+[ext_resource path="res://Content/swordswishmask3.png" type="Texture" id=17]
+[ext_resource path="res://Content/swordswishmask1.png" type="Texture" id=18]
+[ext_resource path="res://AnimationPlayer.gd" type="Script" id=19]
+
+[sub_resource type="StreamTexture" id=1]
+
+flags = 0
+load_path = "res://.import/handandgun2.png-174a9a02b248f758f3686d7f7c0ebfc6.stex"
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ SubResource( 1 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "jump",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22.7346, 31.681 )
+
+[sub_resource type="Shader" id=5]
+
+code = ""
+
+[sub_resource type="ShaderMaterial" id=6]
+
+render_priority = 0
+shader = SubResource( 5 )
+
+[sub_resource type="RayShape2D" id=7]
+
+custom_solver_bias = 0.0
+length = 19.3313
+
+[sub_resource type="Animation" id=8]
+
+resource_name = "SwordAnim"
+length = 0.18
+loop = false
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player/SwordContainer:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.14 ),
+"transitions": PoolRealArray( 0, 0, 0 ),
+"update": 0,
+"values": [ 0.0, 160.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player/SwordSwish:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.18 ),
+"transitions": PoolRealArray( -4, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player/SwordSwish/Light2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.03, 0.07, 0.13 ),
+"transitions": PoolRealArray( 1, 1, -4, 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 5 ) ]
+}
+
+[node name="World" type="Node" index="0"]
+
+[node name="Floor" type="Node" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="Wall" parent="Floor" index="0" instance=ExtResource( 1 )]
+
+[node name="Wall2" parent="Floor" index="1" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 352, 352 )
+
+[node name="Wall3" parent="Floor" index="2" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 416, 352 )
+
+[node name="Wall4" parent="Floor" index="3" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 480, 352 )
+
+[node name="Wall5" parent="Floor" index="4" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 544, 352 )
+
+[node name="Wall6" parent="Floor" index="5" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 608, 352 )
+
+[node name="Wall7" parent="Floor" index="6" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 672, 352 )
+
+[node name="Wall8" parent="Floor" index="7" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 736, 416 )
+
+[node name="Wall9" parent="Floor" index="8" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 800, 416 )
+
+[node name="Wall10" parent="Floor" index="9" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 864, 416 )
+
+[node name="Wall11" parent="Floor" index="10" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 1280, 416 )
+
+[node name="Wall12" parent="Floor" index="11" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 1472, 160 )
+
+[node name="Wall13" parent="Floor" index="12" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 928, 0 )
+
+[node name="Wall14" parent="Floor" index="13" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 864, 0 )
+
+[node name="Wall15" parent="Floor" index="14" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( -64, -320 )
+scale = Vector2( 19, 1 )
+
+[node name="Wall23" parent="Floor" index="15" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( -32, 800 )
+scale = Vector2( 19, 1 )
+
+[node name="Wall22" parent="Floor" index="16" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( -633.798, 282.069 )
+rotation = -1.5657
+scale = Vector2( 19, 1 )
+
+[node name="Wall16" parent="Floor" index="17" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 576, -320 )
+
+[node name="Wall17" parent="Floor" index="18" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 640, -320 )
+
+[node name="Wall18" parent="Floor" index="19" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 704, -320 )
+
+[node name="Wall19" parent="Floor" index="20" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 768, -320 )
+
+[node name="Wall20" parent="Floor" index="21" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 832, -320 )
+
+[node name="Wall21" parent="Floor" index="22" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+position = Vector2( 1120, -320 )
+scale = Vector2( 8, 1 )
+
+[node name="Player" type="KinematicBody2D" parent="." index="1"]
+
+position = Vector2( 354.63, 224 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="SwordSwish" type="Sprite" parent="Player" index="0"]
+
+visible = false
+light_mask = 3
+position = Vector2( 13, 0 )
+scale = Vector2( 1.97945, 1.97945 )
+texture = ExtResource( 3 )
+region_rect = Rect2( 66.25, 28, 0.5, 4 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
+
+[node name="Light2D" type="Light2D" parent="Player/SwordSwish" index="0"]
+
+position = Vector2( 2.52596, 0 )
+scale = Vector2( 0.5, 0.5 )
+enabled = true
+editor_only = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+texture_scale = 2.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 3
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 2
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range", "Transform" ]
+
+[node name="SwordContainer" type="Node2D" parent="Player" index="1"]
+
+position = Vector2( 0, 17 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sword" type="Node2D" parent="Player/SwordContainer" index="0"]
+
+script = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="SwordSprite" type="Sprite" parent="Player/SwordContainer/Sword" index="0"]
+
+rotation = 0.349066
+scale = Vector2( 1.6, 1 )
+texture = ExtResource( 7 )
+offset = Vector2( -32.0848, -0.759277 )
+flip_h = true
+_sections_unfolded = [ "Material", "Offset", "Transform", "Visibility" ]
+
+[node name="Gun" type="AnimatedSprite" parent="Player" index="2"]
+
+position = Vector2( -2.63, 12 )
+scale = Vector2( 1, 0.75 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 1
+centered = false
+offset = Vector2( -0.725006, -15.8301 )
+script = ExtResource( 9 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GunTip" type="Node2D" parent="Player/Gun" index="0"]
+
+position = Vector2( 71.3446, -5 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="GunTarget" type="Node2D" parent="Player/Gun/GunTip" index="0"]
+
+position = Vector2( 2.66666, 0 )
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="Player" index="3"]
+
+position = Vector2( -2.63, 12 )
+frames = SubResource( 3 )
+animation = "idle"
+frame = 1
+playing = true
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="PlayerBounds" type="CollisionShape2D" parent="Player" index="4"]
+
+position = Vector2( -0.630005, 13 )
+shape = SubResource( 4 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="MainCamera" type="Camera2D" parent="Player" index="5"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 2, 2 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = ExtResource( 13 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Bullet" type="Area2D" parent="." index="2"]
+
+material = SubResource( 6 )
+position = Vector2( -626.923, 2761.51 )
+scale = Vector2( 0.206217, 0.399177 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 14 )
+_sections_unfolded = [ "Collision", "Material", "Transform", "Visibility" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BulletBounds" type="CollisionShape2D" parent="Bullet" index="0"]
+
+position = Vector2( 2.48633, -19.1292 )
+scale = Vector2( 2.46786, 2.08434 )
+shape = SubResource( 7 )
+_sections_unfolded = [ "Material", "Visibility" ]
+
+[node name="BulletSprite" type="Sprite" parent="Bullet" index="1"]
+
+position = Vector2( -0.431763, -0.0219727 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 15 )
+flip_v = true
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/SwordAnim = SubResource( 8 )
+blend_times = [  ]
+script = ExtResource( 19 )
+
+
